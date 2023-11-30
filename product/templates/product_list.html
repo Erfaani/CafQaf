@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block content%}
+    <h1>دسته بندی ها</h1>
+    {% for category in categories %}
+        <img src="{{ category.icon.url }}" alt="{{ product.name }}">
+        <h2>{{ category.name }}</h2>
+    {% endfor%}
+    <h1>آیتم ها</h1>
     {% for product in products %}
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
