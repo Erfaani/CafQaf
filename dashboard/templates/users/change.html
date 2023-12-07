@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+ساخت حساب جدید
+{% endblock title %}
+
+{% block content %}
+    <h2>کاربر جدید</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form method="post" action="{% url 'change_user' user.id %}">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" value="{{ user.first_name }}" name="first_name"><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" value="{{ user.last_name }}" name="last_name"><br>
+        <label for="email">Email:</label>
+        <input type="email" value="{{ user.email }}" name="email"><br>
+        <label for="type">نوع کاربر:</label>
+        <select name="type">
+            <option value="">--Please choose an option--</option>
+            <option value="manager" {% if user.is_manager %}selected{% endif %}>مدیر</option>
+            <option value="employee" {% if user.is_employee %}selected{% endif %}>کارمند</option>
+            <option value="normal" {% if user.is_normal %}selected{% endif %}>کاربر عادی</option>
+        </select><br>
+        <label for="username">Username:</label>
+        <input type="text" name="username" value="{{ user.username }}"><br>
+        <label for="password1">Password:</label>
+        <input type="password" name="password1" minlength="8"><br>
+        <label for="password2">Confirm Password:</label>
+        <input type="password" name="password2" minlength="8"><br>
+        <input type="submit" value="تغییر">
+    </form>
+{% endblock content %}

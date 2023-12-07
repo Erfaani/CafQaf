@@ -6,4 +6,10 @@
 
 {% block content %}
 <h1>به خانه خوشامدید</h1>
+{% if request.user.is_authenticated %}
+    <a href="{% url 'dashboard' %}">داشبورد</a>
+    <a href="{% url 'logout' %}">خارج شدن</a>
+{% else %}
+    <a href="{% url 'login' %}">وارد شدن</a>
+{% endif %}
 {% endblock content %}

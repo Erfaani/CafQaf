@@ -16,3 +16,17 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
     
+    @property
+    def is_manager(self):
+        return self.type == 'manager'
+    
+    @property
+    def is_employee(self):
+        return self.type == 'employee'
+    
+    @property
+    def is_normal(self):
+        return self.type == 'normal'
+    
+
+    

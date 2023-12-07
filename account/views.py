@@ -1,7 +1,11 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from .models import User
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
 def login_view(request):

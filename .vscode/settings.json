@@ -1,5 +1,8 @@
 {
     "pylint.args": [
         "load-plugins=pylint_django"
-    ]
+    ],
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
 }
