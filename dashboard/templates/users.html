@@ -1,37 +1,124 @@
 {% extends "base.html" %}
 
 {% block title %}
-مدیریت کاربران
+    مدیریت کاربران
 {% endblock title %}
 
 {% block content %}
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>مدیران</h4>
+        </div>
+        <div class="card-body p-4">
+            {% if managers %}
+            	<table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>نام کاربری</th>
+                    <th>نام</th>
+                    <th>ایمیل</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for manager in managers %}
+                    <tr>
+                        <td>{{ manager.id }}</td>
+                        <td>{{ manager.username }}</td>
+                        <td>{{ manager.first_name }} {{ manager.last_name }}</td>
+                        <td>{{ manager.email }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'change_user' manager.id %}">تغییر</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'delete_user' manager.id %}">حذف</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h5 class="text-center">هیچ مدیری وجود ندارد.</h5>
+            {% endif %}
+        </div>
+    </section>
 
-<h2>
-    <a href="{% url 'add_user' %}">ساخت کاربر جدید</a>
-</h2>
+    <!-- Employee Section -->
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>کارمندان</h4>
+        </div>
+        <div class="card-body p-4">
+            {% if employees %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>نام کاربری</th>
+                        <th>نام</th>
+                        <th>مسئولیت</th>
+                        <th>ایمیل</th>
+                        <th>عملیات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for e in employees %}
+                        <tr>
+                            <td>{{ e.id }}</td>
+                            <td>{{ e.username }}</td>
+                            <td>{{ e.first_name }} {{ e.last_name }}</td>
+                            <td>{{ e.email }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="{% url 'change_user' e.id %}">تغییر</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'delete_user' e.id %}">حذف</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-<h1>مدیرها</h1>
-<ul>
-    {% for manager in managers %}
-        <li>
-            {{ manager.username }} {{ manager.id }}
-            <a href="{% url 'change_user' manager.id %}">تغییر</a>
-            <a href="{% url 'delete_user' manager.id %}">حذف</a>
-        </li>
-    {% endfor %}
-</ul>
+            {% else %}
+                <h5 class="text-center">هیچ کارمندی وجود ندارد.</h5>
+            {% endif %}
+        </div>
+    </section>
 
-<h1>کارمندان</h1>
 
-<h1>کاربران</h1>
-<ul>
-    {% for normal in normals %}
-        <li>
-            {{ normal.username }} {{ normal.id }}
-            <a href="{% url 'change_user' normal.id %}">تغییر</a>
-            <a href="{% url 'delete_user' normal.id %}">حذف</a>
-        </li>
-    {% endfor %}
-</ul>
+    <!-- Normal Section -->
+    <section class="card mt-3">
+        <div class="card-header">
+            <h4>مشتریان</h4>
+        </div>
+        <div class="card-body p-4">
+            {% if normals %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>نام کاربری</th>
+                    <th>نام</th>
+                    <th>ایمیل</th>
+                    <th>عملیات</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for n in normals %}
+                    <tr>
+                        <td>{{ n.id }}</td>
+                        <td>{{ n.username }}</td>
+                        <td>{{ n.first_name }} {{ n.last_name }}</td>
+                        <td>{{ n.email }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="{% url 'change_user' n.id %}">تغییر</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'delete_user' n.id %}">حذف</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <h5 class="text-center">هیچ مشتری وجود ندارد.</h5>
+            {% endif %}
+        </div>
+    </section>
 
 {% endblock content %}
