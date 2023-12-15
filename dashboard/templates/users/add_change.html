@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if this %}
+        تغییر اطلاعات کاربر
+    {% else %}
+        ساخت کاربر
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card p-4 m-5">
+            <form class="row g-3" method="post"
+                    {% if this %}
+                  action="{% url 'change_user' this.id %}"
+                    {% else %}
+                  action="{% url 'add_user' %}"
+                    {% endif %}
+            >
+                {% csrf_token %}
+
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">نام</label>
+                    <input type="text" class="form-control" name="first_name" required
+                            {% if this %}
+                           value="{{ this.first_name }}"
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">نام خانوادگی</label>
+                    <input type="text" class="form-control" name="last_name" required
+                            {% if this %}
+                           value="{{ this.last_name }}"
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-md-12">
+                    <label for="email" class="form-label">ایمیل</label>
+                    <input type="email" class="form-control" name="email" required
+                            {% if this %}
+                           value="{{ this.email }}"
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-md-6">
+                    <label for="username" class="form-label">نام کاربری</label>
+                    <input type="text" class="form-control" name="username" required
+                            {% if this %}
+                           value="{{ this.username }}"
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-md-6">
+                    <label for="type" class="form-label">نوع کاربری</label>
+                    <select name="type" class="form-select" required>
+                        <option value="">لطفا نوع کاربر را انتخاب کنید</option>
+                        <option value="manager"
+                                {% if this and this.type == 'manager' %}
+                                selected
+                                {% endif %}
+                        >مدیر
+                        </option>
+                        <option value="employee"
+                                {% if this and this.type == 'employee' %}
+                                selected
+                                {% endif %}
+                        >کارمند</option>
+                        <option value="normal"
+                                {% if this and this.type == 'normal' %}
+                                selected
+                                {% endif %}
+                        >کاربر عادی</option>
+                    </select>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="password1" class="form-label">رمز عبور</label>
+                    <input type="password" class="form-control" name="password1"
+                            {% if not this %}
+                           required
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-md-12">
+                    <label for="password2" class="form-label">تکرار رمز عبور</label>
+                    <input type="password" class="form-control" name="password2"
+                            {% if not this %}
+                           required
+                            {% endif %}
+                    >
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        {% if this %}
+                            تغییر اطلاعات
+                        {% else %}
+                            ساخت کاربر
+                        {% endif %}
+                    </button>
+                    {% if error %}
+                        <p class="mt-2 text-danger">{{ error }}</p>
+                    {% endif %}
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -42,8 +42,8 @@ def add_user(request):
             )
             return redirect("user_management")
         else:
-            return render(request, 'users/add.html', {"error": "رمز عبور و تکرار آن یکسان نیستند"})
-    return render(request, 'users/add.html')
+            return render(request, 'users/add_change.html', {"error": "رمز عبور و تکرار آن یکسان نیستند"})
+    return render(request, 'users/add_change.html')
 
 @login_required
 def change_user(request, user_id):
@@ -60,12 +60,12 @@ def change_user(request, user_id):
             if password != "":
                 user.set_password(password)  
         else:
-            return render(request, 'users/change.html', {"error": "رمز عبور و تکرار آن یکسان نیستند"})
+            return render(request, 'users/add_change.html', {"error": "رمز عبور و تکرار آن یکسان نیستند"})
 
         user.save()
         return redirect("user_management")
     
-    return render(request, 'users/change.html', {"user": user})
+    return render(request, 'users/add_change.html', {"this": user})
 
 @login_required
 def delete_user(request, user_id):

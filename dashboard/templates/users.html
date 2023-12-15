@@ -55,7 +55,6 @@
                         <th>ID</th>
                         <th>نام کاربری</th>
                         <th>نام</th>
-                        <th>مسئولیت</th>
                         <th>ایمیل</th>
                         <th>عملیات</th>
                     </tr>
@@ -120,5 +119,8 @@
             {% endif %}
         </div>
     </section>
+
+    <!-- Add User Button -->
+    <a class="btn btn-success mt-4" href="{% url 'add_user' %}">ساخت کاربر جدید</a>
 
 {% endblock content %}
