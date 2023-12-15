@@ -1,14 +1,287 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
 
 {% block title %}
-داشبورد
+    داشبورد
 {% endblock title %}
 
 {% block content %}
 
-<a href="{% url 'user_management' %}">مدیریت کارکنان</a>
-<a href="">مدیریت محصولات</a>
-<a href="">مدیریت انبار</a>
-<a href="">حسابداری</a>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div class="logo-details">
+                <i class='bx bxl-c-plus-plus icon'></i>
+                <div class="logo_name">کاف قاف</div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            <ul class="nav-list">
+                <li>
+                    <a href="{% url 'dashboard' %}"
+                            {% if request.resolver_match.url_name == 'dashboard' %}
+                       class="active"
+                            {% endif %}
+                    >
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="links_name">داشبورد</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'user_management' %}"
+                            {% if request.resolver_match.url_name == 'user_management' %}
+                       class="active"
+                            {% endif %}
+                    >
+                        <i class='bx bx-user'></i>
+                        <span class="links_name">مدیریت کاربران</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-pie-chart-alt-2'></i>
+                        <span class="links_name">حسابداری</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cart-alt'></i>
+                        <span class="links_name">مدیریت محصولات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-cog'></i>
+                        <span class="links_name">تنظیمات</span>
+                    </a>
+                </li>
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="profile.jpg" alt="profileImg">
+                        <div class="name_job">
+                            <div class="name">Prem Shahi</div>
+                            <div class="job">Web designer</div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </li>
+            </ul>
+        </div>
+
+        <section class="dashboard-content container-fluid">
+            <div class="container">
+                {% block dashboard_content %}
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="card text-white bg-primary mb-3">
+                                <div class="card-header">مجموع سفارشات</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">8</h5>
+                                    <p class="card-text">(+32.40%)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-success mb-3">
+                                <div class="card-header">مشتریان جدید</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">1,012</h5>
+                                    <p class="card-text">(+25%)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-info mb-3">
+                                <div class="card-header">میزان فروش</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">$24,254</h5>
+                                    <p class="card-text">(+2.33%)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <!-- Chart -->
+                        <div class="col-md-8">
+                            <canvas id="salesChart" width="400" height="255"></canvas>
+                        </div>
+
+                        <!-- Trending products -->
+                        <div class="col-md-4">
+                            <div class="card p-0">
+                                <div class="card-header d-flex">
+                                    محصولات پرفروش
+                                    <a class="ms-auto" href="#">مشاهده همه</a>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>نام محصول</th>
+                                            <th>تعداد</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>محصول 1</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 2</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 3</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 4</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 5</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 6</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 7</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 8</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 9</td>
+                                            <td>100</td>
+                                        </tr>
+                                        <tr>
+                                            <td>محصول 10</td>
+                                            <td>100</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Table of latest orders -->
+                    <div class="row">
+                        <div class="card p-0 my-4">
+                            <div class="card-header d-flex">
+                                آخرین سفارشات
+                                <a class="ms-auto" href="#">مشاهده همه</a>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>شماره سفارش</th>
+                                        <th>نام مشتری</th>
+                                        <th>تاریخ</th>
+                                        <th>مبلغ</th>
+                                        <th>وضعیت</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>محمدرضا</td>
+                                        <td>1399/12/12</td>
+                                        <td>200,000</td>
+                                        <td><span class="badge bg-success">تحویل داده شده</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>محمدرضا</td>
+                                        <td>1399/12/12</td>
+                                        <td>200,000</td>
+                                        <td><span class="badge bg-warning">در حال پردازش</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>محمدرضا</td>
+                                        <td>1399/12/12</td>
+                                        <td>200,000</td>
+                                        <td><span class="badge bg-danger">لغو شده</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>محمدرضا</td>
+                                        <td>1399/12/12</td>
+                                        <td>200,000</td>
+                                        <td><span class="badge bg-success">تحویل داده شده</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>محمدرضا</td>
+                                        <td>1399/12/12</td>
+                                        <td>200,000</td>
+                                        <td><span class="badge bg-success">تحویل داده شده</span></td>
+                                    </tr>
+                                    <tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock dashboard_content %}
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let sidebar = document.querySelector(".sidebar");
+        let closeBtn = document.querySelector("#btn");
+        closeBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("open");
+            menuBtnChange();//calling the function(optional)
+        });
+
+        // following are the code to change sidebar button(optional)
+        function menuBtnChange() {
+            if (sidebar.classList.contains("open")) {
+                closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+            } else {
+                closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+            }
+        }
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Sample data for the chart
+        var ctx = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+                datasets: [{
+                    label: 'فروش ماهانه',
+                    data: [12000, 15000, 18000, 10000, 20000, 15000, 12000, 15000, 18000, 10000, 20000, 15000],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 
 {% endblock content %}
