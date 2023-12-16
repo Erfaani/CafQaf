@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "dashboard.html" %}
 
 {% block title %}
     {% if this %}
@@ -8,109 +8,137 @@
     {% endif %}
 {% endblock title %}
 
-{% block content %}
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="card p-4 m-5">
-            <form class="row g-3" method="post"
-                    {% if this %}
-                  action="{% url 'change_user' this.id %}"
-                    {% else %}
-                  action="{% url 'add_user' %}"
-                    {% endif %}
-            >
-                {% csrf_token %}
+{% block dashboard_content %}
+    <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+        <form class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" method="post"
+                {% if this %}
+                action="{% url 'change_user' this.id %}"
+                {% else %}
+                 action="{% url 'add_user' %}"
+                {% endif %}
+        >
+            {% csrf_token %}
+            <div class="px-4 py-6 sm:p-8">
+                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-                <div class="col-md-6">
-                    <label for="first_name" class="form-label">نام</label>
-                    <input type="text" class="form-control" name="first_name" required
-                            {% if this %}
-                           value="{{ this.first_name }}"
-                            {% endif %}
-                    >
+                    <div class="sm:col-span-3">
+                        <label for="first_name" class="block text-sm font-medium leading-6 text-gray-900">نام</label>
+                        <div class="mt-2">
+                            <input type="text" name="first_name" id="first_name" autocomplete="given-name"
+                                   required
+                                    {% if this %}
+                                   value="{{ this.first_name }}"
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="last_name" class="block text-sm font-medium leading-6 text-gray-900">نام
+                            خانوادگی</label>
+                        <div class="mt-2">
+                            <input type="text" name="last_name" id="last_name" autocomplete="family-name" required
+                                    {% if this %}
+                                   value="{{ this.last_name }}"
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">ایمیل</label>
+                        <div class="mt-2">
+                            <input id="email" name="email" type="email" autocomplete="email"
+                                   required
+                                    {% if this %}
+                                   value="{{ this.email }}"
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <label for="type" class="block text-sm font-medium leading-6 text-gray-900">نوع کاربر</label>
+                        <div class="mt-2">
+                            <select id="type" name="type" autocomplete="country-name" required
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option value="">لطفا نوع کاربر را انتخاب کنید</option>
+                                <option value="manager"
+                                        {% if this and this.type == 'manager' %}
+                                        selected
+                                        {% endif %}
+                                >مدیر
+                                </option>
+                                <option value="employee"
+                                        {% if this and this.type == 'employee' %}
+                                        selected
+                                        {% endif %}
+                                >کارمند
+                                </option>
+                                <option value="normal"
+                                        {% if this and this.type == 'normal' %}
+                                        selected
+                                        {% endif %}
+                                >کاربر عادی
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-span-full">
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">نام
+                            کاربری</label>
+                        <div class="mt-2">
+                            <input type="text" name="username" id="street-address" autocomplete="street-address"
+                                   required
+                                    {% if this %}
+                                   value="{{ this.username }}"
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3 sm:col-start-1">
+                        <label for="password1" class="block text-sm font-medium leading-6 text-gray-900">رمز
+                            عبور</label>
+                        <div class="mt-2">
+                            <input type="password" name="password1" id="password1" autocomplete="address-level2"
+                                    {% if not this %}
+                                   required
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-3">
+                        <label for="password2" class="block text-sm font-medium leading-6 text-gray-900">تکرار رمز
+                            عبور</label>
+                        <div class="mt-2">
+                            <input type="password" name="password2" id="password2" autocomplete="address-level1"
+                                    {% if not this %}
+                                   required
+                                    {% endif %}
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-6">
-                    <label for="last_name" class="form-label">نام خانوادگی</label>
-                    <input type="text" class="form-control" name="last_name" required
-                            {% if this %}
-                           value="{{ this.last_name }}"
-                            {% endif %}
-                    >
-                </div>
-
-                <div class="col-md-12">
-                    <label for="email" class="form-label">ایمیل</label>
-                    <input type="email" class="form-control" name="email" required
-                            {% if this %}
-                           value="{{ this.email }}"
-                            {% endif %}
-                    >
-                </div>
-
-                <div class="col-md-6">
-                    <label for="username" class="form-label">نام کاربری</label>
-                    <input type="text" class="form-control" name="username" required
-                            {% if this %}
-                           value="{{ this.username }}"
-                            {% endif %}
-                    >
-                </div>
-
-                <div class="col-md-6">
-                    <label for="type" class="form-label">نوع کاربری</label>
-                    <select name="type" class="form-select" required>
-                        <option value="">لطفا نوع کاربر را انتخاب کنید</option>
-                        <option value="manager"
-                                {% if this and this.type == 'manager' %}
-                                selected
-                                {% endif %}
-                        >مدیر
-                        </option>
-                        <option value="employee"
-                                {% if this and this.type == 'employee' %}
-                                selected
-                                {% endif %}
-                        >کارمند</option>
-                        <option value="normal"
-                                {% if this and this.type == 'normal' %}
-                                selected
-                                {% endif %}
-                        >کاربر عادی</option>
-                    </select>
-                </div>
-
-                <div class="col-md-12">
-                    <label for="password1" class="form-label">رمز عبور</label>
-                    <input type="password" class="form-control" name="password1"
-                            {% if not this %}
-                           required
-                            {% endif %}
-                    >
-                </div>
-
-                <div class="col-md-12">
-                    <label for="password2" class="form-label">تکرار رمز عبور</label>
-                    <input type="password" class="form-control" name="password2"
-                            {% if not this %}
-                           required
-                            {% endif %}
-                    >
-                </div>
-
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">
-                        {% if this %}
-                            تغییر اطلاعات
-                        {% else %}
-                            ساخت کاربر
-                        {% endif %}
-                    </button>
-                    {% if error %}
-                        <p class="mt-2 text-danger">{{ error }}</p>
-                    {% endif %}
-                </div>
-
-            </form>
+            </div>
+            <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+                {% if error %}
+                    <p class="text-red-600 ml-auto">{{ error }}</p>
+                {% endif %}
+                <a href="{% url 'user_management' %}" class="text-sm font-semibold leading-6 text-gray-900">لغو</a>
+                <button type="submit"
+                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    ذخیره
+                </button>
+            </div>
+        </form>
+        <div class="px-4 sm:px-0 mt-5">
+            <h2 class="text-base font-semibold leading-7 text-gray-900">اطلاعات کاربر</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600">لطفا در وارد کردن اطلاعات خود دقت فرمایید.</p>
         </div>
     </div>
-{% endblock content %}
+
+
+{% endblock dashboard_content %}
