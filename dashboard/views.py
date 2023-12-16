@@ -1,14 +1,17 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 
 from account.models import User
 
 
 @login_required
+@user_passes_test(lambda u: u.is_manager or u.is_employee)
 def dashboard_view(request):
     return render(request, "dashboard.html")
 
+
 @login_required
+@user_passes_test(lambda u: u.is_manager or u.is_employee)
 def users_view(request):
     managers = User.objects.filter(type='manager')
     employees = User.objects.filter(type='employee')
@@ -21,7 +24,9 @@ def users_view(request):
            "normals": normals
            })
 
+
 @login_required
+@user_passes_test(lambda u: u.is_manager)
 def add_user(request):
     if request.method == "POST":
         first_name = request.POST["first_name"]
@@ -45,7 +50,9 @@ def add_user(request):
             return render(request, 'users/add_change.html', {"error": "رمز عبور و تکرار آن یکسان نیستند"})
     return render(request, 'users/add_change.html')
 
+
 @login_required
+@user_passes_test(lambda u: u.is_manager)
 def change_user(request, user_id):
     user = User.objects.get(id=user_id)
     if request.method == "POST":
@@ -68,6 +75,7 @@ def change_user(request, user_id):
     return render(request, 'users/add_change.html', {"this": user})
 
 @login_required
+@user_passes_test(lambda u: u.is_manager)
 def delete_user(request, user_id):
     user = User.objects.get(id=user_id)
     user.delete()
