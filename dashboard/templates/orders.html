@@ -1,0 +1,60 @@
+{% extends 'dashboard.html' %}
+
+{% block title %}
+    مدیریت شفارشات
+{% endblock %}
+
+{% block dashboard_content %}
+    <div class="mb-10 max-h-[600px] overflow-y-auto bg-white">
+        <div class="py-10">
+
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="sm:flex sm:items-center">
+                    <div class="sm:flex-auto">
+                        <h1 class="text-base font-semibold leading-6 text-gray-900">سفارشات جاری</h1>
+                        <p class="mt-2 text-sm text-gray-700">لیست سفارشات جاری کافه</p>
+                    </div>
+                    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                        <button type="button"
+                                class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            سفارش جدید
+                        </button>
+                    </div>
+                </div>
+                {% if current_orders %}
+                    {% include 'dashboard/components/order_items.html' with orders=current_orders %}
+                {% else %}
+                    <div class="mt-10 flow-root">
+                        <p class="text-sm text-gray-700 text-center">سفارش جاری‌ای وجود ندارد</p>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mb-10 max-h-[600px] overflow-y-auto bg-white">
+        <div class="py-10">
+
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="sm:flex sm:items-center">
+                    <div class="sm:flex-auto">
+                        <h1 class="text-base font-semibold leading-6 text-gray-900">تاریخچه سفارشات</h1>
+                        <p class="mt-2 text-sm text-gray-700">لیست سفارشاتی که انجام شده‌اند</p>
+                    </div>
+                </div>
+                {% if past_orders %}
+                {% include 'dashboard/components/order_items.html' with orders=past_orders %}
+                {% else %}
+                    <div class="mt-10 flow-root">
+                        <p class="text-sm text-gray-700 text-center">تاریخچه وجود ندارد</p>
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock dashboard_content %}

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from account.models import User
 from product.models import Category, Product, Table
+from order.models import Order, OrderItem
 
 
 @login_required
@@ -154,6 +155,7 @@ def add_change_table(request, table_id=None):
         return redirect("product_management")
     return render(request, "add_change_table.html", {"table": table})
 
+
 def delete_table(request, table_id):
     table = Table.objects.get(id=table_id)
     table.delete()
@@ -188,8 +190,21 @@ def add_change_product(request, product_id=None):
     return render(
         request, "add_change_product.html", {"product": product, "categories": categories}
     )
-    
+
+
 def delete_product(request, product_id):
     product = Product.objects.get(id=product_id)
     product.delete()
     return redirect("product_management")
+
+
+def orders_view(request):
+    current_orders = Order.objects.filter(is_active=True)
+    past_orders = Order.objects.filter(is_active=False)
+    return render(request, "orders.html", {"current_orders": current_orders, "past_orders": past_orders})
+
+def done_order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order.is_active = False
+    order.save()
+    return redirect('order_management')

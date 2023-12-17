@@ -5,7 +5,7 @@ from .models import Order, OrderItem
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'total_price', 'table', 'canceled', 'created_at')
+    list_display = ('user', 'total_price', 'table', 'is_active', 'created_at')
 
 
 @admin.register(OrderItem)

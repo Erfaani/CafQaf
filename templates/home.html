@@ -87,7 +87,7 @@
                                     <div class="flex flex-1 items-center justify-end">
                                         <div class="flex items-center lg:ms-8">
                                              {% if user.is_authenticated %}
-                                                 {% if user.is_manager %}
+                                                 {% if user.is_manager or user.is_employee %}
                                                      <a href="{% url 'dashboard' %}" class="me-8 text-sm font-medium text-white">داشبورد</a>
                                                  {% endif %}
                                                  <a href="{% url 'logout' %}" class="me-2 text-sm font-medium text-white">خارج شدن</a>

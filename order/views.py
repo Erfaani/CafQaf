@@ -36,4 +36,7 @@ def view_cart(request):
     user = request.user
     order = Order.objects.filter(user=user).last()
 
-    return render(request, 'cart.html', {'order': order})
+    return render(request, 'cart.html', {'order': order}
+
+
+

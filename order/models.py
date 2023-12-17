@@ -6,7 +6,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product, through='OrderItem')
     table = models.ForeignKey(Table, null=True, on_delete=models.SET_NULL)
-    canceled = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
