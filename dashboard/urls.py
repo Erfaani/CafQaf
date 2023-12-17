@@ -10,6 +10,8 @@ from .views import (
     delete_category,
     add_change_table,
     delete_table,
+    add_change_product, 
+    delete_product
 )
 
 urlpatterns = [
@@ -38,4 +40,15 @@ urlpatterns = [
         name="change_table",
     ),
     path("products/delete_table/<int:table_id>", delete_table, name="delete_table"),
+    path("products/add_change_product/", add_change_product, name="add_product"),
+    path(
+        "products/add_change_product/<int:product_id>",
+        add_change_product,
+        name="change_product",
+    ),
+    path(
+        "products/delete_product/<int:product_id>",
+        delete_product,
+        name="delete_product",
+    ),
 ]

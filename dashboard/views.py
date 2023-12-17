@@ -158,3 +158,38 @@ def delete_table(request, table_id):
     table = Table.objects.get(id=table_id)
     table.delete()
     return redirect("product_management")
+
+
+def add_change_product(request, product_id=None):
+    product = None
+    if product_id:
+        product = Product.objects.get(id=product_id)
+
+    if request.method == "POST":
+        name = request.POST["name"]
+        price = request.POST["price"]
+        category = Category.objects.get(id=request.POST["category"])
+        image = None
+        if request.FILES:
+            image = request.FILES.get("image")
+        if product:
+            product.name = name
+            product.price = price
+            product.category = category
+            if image:
+                product.image = image
+            product.save()
+        else:
+            Product.objects.create(
+                name=name, price=price, category=category, image=image
+            )
+        return redirect("product_management")
+    categories = Category.objects.all()
+    return render(
+        request, "add_change_product.html", {"product": product, "categories": categories}
+    )
+    
+def delete_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+    product.delete()
+    return redirect("product_management")
