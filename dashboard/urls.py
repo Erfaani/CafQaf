@@ -8,6 +8,8 @@ from .views import (
     products_view,
     add_change_category,
     delete_category,
+    add_change_table,
+    delete_table,
 )
 
 urlpatterns = [
@@ -29,4 +31,11 @@ urlpatterns = [
         delete_category,
         name="delete_category",
     ),
+    path("products/add_change_table/", add_change_table, name="add_table"),
+    path(
+        "products/add_change_table/<int:table_id>",
+        add_change_table,
+        name="change_table",
+    ),
+    path("products/delete_table/<int:table_id>", delete_table, name="delete_table"),
 ]

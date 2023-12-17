@@ -120,7 +120,7 @@ def add_change_category(request, category_id=None):
         name = request.POST["name"]
         icon = None
         if request.FILES:
-            icon = request.FILES.get('image')
+            icon = request.FILES.get("image")
         if category:
             category.name = name
             category.icon = icon
@@ -134,4 +134,27 @@ def add_change_category(request, category_id=None):
 def delete_category(request, category_id):
     category = Category.objects.get(id=category_id)
     category.delete()
+    return redirect("product_management")
+
+
+def add_change_table(request, table_id=None):
+    table = None
+    if table_id:
+        table = Table.objects.get(id=table_id)
+
+    if request.method == "POST":
+        name = request.POST["name"]
+        capacity = request.POST["capacity"]
+        if table:
+            table.name = name
+            table.capacity = capacity
+            table.save()
+        else:
+            Table.objects.create(name=name, capacity=capacity)
+        return redirect("product_management")
+    return render(request, "add_change_table.html", {"table": table})
+
+def delete_table(request, table_id):
+    table = Table.objects.get(id=table_id)
+    table.delete()
     return redirect("product_management")
