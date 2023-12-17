@@ -208,3 +208,10 @@ def done_order(request, order_id):
     order.is_active = False
     order.save()
     return redirect('order_management')
+
+
+def select_item(request):
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    tables = Table.objects.all()
+    return render(request, 'select_item.html', {'categories': categories, 'products': products, 'tables': tables})

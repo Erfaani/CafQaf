@@ -13,6 +13,7 @@ from .views import (
     add_change_product,
     delete_product,
     orders_view, done_order,
+    select_item,
 )
 
 urlpatterns = [
@@ -54,4 +55,5 @@ urlpatterns = [
     ),
     path("orders/", orders_view, name="order_management"),
     path('orders/done/<int:order_id>/', done_order, name='done_order'),
+    path("select_item/", select_item, name="select_item"),
 ]

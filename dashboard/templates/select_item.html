@@ -1,0 +1,90 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+{% block title %}
+    انتخاب آیتم
+{% endblock %}
+
+{% block dashboard_content %}
+
+    <div class="pb-24">
+        <!-- Filters -->
+        <section
+                class="grid items-center border-b border-t border-gray-200">
+            <div class="col-start-1 row-start-1 py-4">
+                <div class="mx-auto flex max-w-7xl justify-center px-4 sm:px-6 lg:px-8">
+                    <div x-data="{ open: false }" x-init="init()"
+                         class="relative inline-block">
+                        <div class="flex">
+                            <button type="button"
+                                    class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+                                    id="menu-button" x-ref="button" @click="open = !open"
+                                    aria-expanded="false">
+                                دسته بندی
+                                <svg class="-ml-1 mr-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                                     viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             x-ref="menu-items" x-description="Dropdown menu, show/hide based on menu state."
+                             x-bind:aria-activedescendant="activeDescendant" role="menu" aria-orientation="vertical"
+                             aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                                {% for category in categories %}
+                                	<a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm hover:bg-gray-100">
+                                		{{ category.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product grid -->
+        <section aria-labelledby="products-heading" class="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
+            <h2 id="products-heading" class="sr-only">محصولات</h2>
+
+            {% for product in products %}
+               <div class="-mx-px grid grid-cols-2 border-r border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+                <div class="group relative border-b border-l border-gray-200 p-4 sm:p-6">
+                    <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
+                        <img src="{{ product.image.url }}"
+                             alt="TODO" class="h-full w-full object-cover object-center">
+                    </div>
+                    <div class="pb-4 pt-10 text-center">
+                        <h3 class="text-sm font-medium text-gray-900">
+                            <a href="#">
+                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                {{ product.name }}
+                            </a>
+                        </h3>
+                        <p class="mt-4 text-base font-medium text-gray-900">
+                            {{ product.price }} تومان
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
+
+
+
+        </section>
+    </div>
+
+{% endblock %}
