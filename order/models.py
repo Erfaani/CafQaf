@@ -1,24 +1,6 @@
 from django.db import models
-from product.models import Product
+from product.models import Product, Table
 from account.models import User
-
-
-class TableType(models.Model):
-    type_name = models.CharField(max_length=255, unique=True)
-
-    def __str__(self) -> str:
-        return str(self.type_name)
-
-
-class Table(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    is_available = models.BooleanField(default=True)
-    table_type = models.ForeignKey(TableType, on_delete=models.CASCADE)
-    capacity = models.PositiveIntegerField(default=1)
-
-    def __str__(self) -> str:
-        return str(self.name)
-
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

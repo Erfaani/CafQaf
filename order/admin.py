@@ -1,9 +1,7 @@
 from django.contrib import admin
 
-from .models import TableType, Table, Order, OrderItem
+from .models import Order, OrderItem
 
-admin.site.register(TableType)
-admin.site.register(Table)
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
