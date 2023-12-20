@@ -5,15 +5,7 @@
 {% endblock title %}
 {% block content %}
     <div class="bg-white">
-        <!--
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-        -->
-        <div x-data="{ openSidebar: false }"
+          <div x-data="{ openSidebar: false }"
              @keydown.window.escape="openSidebar = false">
             <div x-show="openSidebar"
                  class="relative z-50 lg:hidden"
@@ -28,7 +20,6 @@
                      x-transition:leave-start="opacity-100"
                      x-transition:leave-end="opacity-0"
                      class="fixed inset-0 bg-gray-900/80"
-                     x-description="Off-canvas menu backdrop, show/hide based on off-canvas menu state."></div>
                 <div class="fixed inset-0 flex">
                     <div x-show="openSidebar"
                          x-transition:enter="transition ease-in-out duration-300 transform"
@@ -37,7 +28,6 @@
                          x-transition:leave="transition ease-in-out duration-300 transform"
                          x-transition:leave-start="-translate-x-0"
                          x-transition:leave-end="translate-x-full"
-                         x-description="Off-canvas menu, show/hide based on off-canvas menu state."
                          class="relative ml-16 flex w-full max-w-xs flex-1"
                          @click.away="openSidebar = false">
                         <div x-show="openSidebar"
@@ -47,7 +37,6 @@
                              x-transition:leave="ease-in-out duration-300"
                              x-transition:leave-start="opacity-100"
                              x-transition:leave-end="opacity-0"
-                             x-description="Close button, show/hide based on off-canvas menu state."
                              class="absolute right-full top-0 flex w-16 justify-center pt-5">
                             <button type="button" class="-m-2.5 p-2.5" @click="openSidebar = false">
                                 <span class="sr-only">Close sidebar</span>
@@ -85,8 +74,8 @@
                 <div class="flex grow flex-col gap-y-5 overflow-y-auto border-l border-gray-200 bg-white px-6 pb-4">
                     <div class="flex h-16 shrink-0 items-center">
                         <img class="h-8 w-auto"
-                                width=""
-                                height=""
+                             width=""
+                             height=""
                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
                              alt="Your Company">
                     </div>
@@ -152,12 +141,11 @@
                                         class="-m-1.5 flex items-center p-1.5"
                                         id="user-menu-button"
                                         x-ref="button"
-                                        @click="openDropdown = !openDropdown"
-                                > 
+                                        @click="openDropdown = !openDropdown">
                                     <span class="sr-only">Open user menu</span>
                                     <img class="h-8 w-8 rounded-full bg-gray-50"
-                                            width=""
-                                            height=""
+                                         width=""
+                                         height=""
                                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
                                          alt="">
                                     <span class="hidden lg:flex lg:items-center">
@@ -185,8 +173,7 @@
                                      role="menu"
                                      aria-orientation="vertical"
                                      aria-labelledby="user-menu-button"
-                                     tabindex="-1"
-                                     >
+                                     tabindex="-1">
                                     <a href="#"
                                        class="block px-3 py-1 text-sm leading-6 text-gray-900"
                                        x-state:on="Active"

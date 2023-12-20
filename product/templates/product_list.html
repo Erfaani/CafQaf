@@ -1,20 +1,16 @@
 {% extends "base.html" %}
-
-{% block title %}
-        لیست محصولات
-{% endblock %}
-
-{% block content%}
+{% block title %}لیست محصولات{% endblock title %}
+{% block content %}
     <h1>دسته بندی ها</h1>
     {% for category in categories %}
-        <img src="{{ category.icon.url }}" alt="{{ product.name }}">
+        <img width="" height="" src="{{ category.icon.url }}" alt="{{ product.name }}">
         <h2>{{ category.name }}</h2>
-    {% endfor%}
+    {% endfor %}
     <h1>آیتم ها</h1>
     {% for product in products %}
         <h2>{{ product.name }}</h2>
         <p>{{ product.description }}</p>
         <p>${{ product.price }}</p>
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <img width="" height="" src="{{ product.image.url }}" alt="{{ product.name }}">
     {% endfor %}
 {% endblock content %}

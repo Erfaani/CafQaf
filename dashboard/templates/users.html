@@ -1,14 +1,11 @@
 {% extends "dashboard.html" %}
-
 {% block title %}
     مدیریت کاربران
 {% endblock title %}
-
 {% block dashboard_content %}
-    <a href="{% url 'add_user' %}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">ساخت کاربر جدید</a>
-
-    {% include 'dashboard/components/user_items.html' with title='مدیران' users=managers badge='مدیر' %}
-    {% include 'dashboard/components/user_items.html' with title='کارمندان' users=employees badge='کارمند' %}
-    {% include 'dashboard/components/user_items.html' with title='مشتریان' users=normals badge='مشتری' %}
-
+    <a href="{% url "add_user" %}"
+       class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">ساخت کاربر جدید</a>
+    {% include "dashboard/components/user_items.html" with title="مدیران" users=managers badge="مدیر" %}
+    {% include "dashboard/components/user_items.html" with title="کارمندان" users=employees badge="کارمند" %}
+    {% include "dashboard/components/user_items.html" with title="مشتریان" users=normals badge="مشتری" %}
 {% endblock dashboard_content %}
