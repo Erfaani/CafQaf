@@ -6,6 +6,6 @@
         "django-html": "html"
     },
     "[django-html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "monosans.djlint"
     },
 }
