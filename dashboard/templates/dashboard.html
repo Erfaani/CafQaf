@@ -5,8 +5,7 @@
 {% endblock title %}
 {% block content %}
     <div class="bg-white">
-          <div x-data="{ openSidebar: false }"
-             @keydown.window.escape="openSidebar = false">
+        <div x-data="{ openSidebar: false }">
             <div x-show="openSidebar"
                  class="relative z-50 lg:hidden"
                  x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state."
@@ -19,7 +18,7 @@
                      x-transition:leave="transition-opacity ease-linear duration-300"
                      x-transition:leave-start="opacity-100"
                      x-transition:leave-end="opacity-0"
-                     class="fixed inset-0 bg-gray-900/80"
+                     class="fixed inset-0 bg-gray-900/80"></div>
                 <div class="fixed inset-0 flex">
                     <div x-show="openSidebar"
                          x-transition:enter="transition ease-in-out duration-300 transform"
