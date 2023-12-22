@@ -1,7 +1,7 @@
 {% extends "dashboard.html" %}
 {% block title %}مدیریت شفارشات{% endblock title %}
 {% block dashboard_content %}
-    <div class="mb-10 max-h-[600px] overflow-y-auto bg-white">
+    <div class="mb-10 overflow-y-auto bg-white">
         <div class="py-10">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 {% if current_orders %}
-                    {% include "dashboard/components/order_items.html" with orders=current_orders %}
+                    {% include "dashboard/orders/order_items.html" with orders=current_orders %}
                 {% else %}
                     <div class="mt-10 flow-root">
                         <p class="text-sm text-gray-700 text-center">سفارش جاری‌ای وجود ندارد</p>
@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div class="mb-10 max-h-[600px] overflow-y-auto bg-white">
+    <div class="mb-10 overflow-y-auto bg-white">
         <div class="py-10">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 {% if past_orders %}
-                    {% include "dashboard/components/order_items.html" with orders=past_orders %}
+                    {% include "dashboard/orders/order_items.html" with orders=past_orders %}
                 {% else %}
                     <div class="mt-10 flow-root">
                         <p class="text-sm text-gray-700 text-center">تاریخچه وجود ندارد</p>

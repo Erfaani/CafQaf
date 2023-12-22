@@ -28,7 +28,7 @@
                 </thead>
                 <tbody>
                     {% for order in orders %}
-                        {% include "dashboard/components/order_item.html" with order=order %}
+                        {% include "dashboard/orders/order_item.html" with order=order %}
                     {% endfor %}
                 </tbody>
             </table>

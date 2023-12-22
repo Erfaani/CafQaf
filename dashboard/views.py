@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
+from django.views.decorators.http import require_GET
 
 from account.models import User
 from product.models import Category, Product, Table
@@ -188,7 +189,9 @@ def add_change_product(request, product_id=None):
         return redirect("product_management")
     categories = Category.objects.all()
     return render(
-        request, "add_change_product.html", {"product": product, "categories": categories}
+        request,
+        "add_change_product.html",
+        {"product": product, "categories": categories},
     )
 
 
@@ -201,17 +204,87 @@ def delete_product(request, product_id):
 def orders_view(request):
     current_orders = Order.objects.filter(is_active=True)
     past_orders = Order.objects.filter(is_active=False)
-    return render(request, "orders.html", {"current_orders": current_orders, "past_orders": past_orders})
+    return render(
+        request,
+        "dashboard/orders/orders.html",
+        {"current_orders": current_orders, "past_orders": past_orders},
+    )
+
 
 def done_order(request, order_id):
     order = Order.objects.get(id=order_id)
     order.is_active = False
     order.save()
-    return redirect('order_management')
+    return redirect("order_management")
+
+def delete_order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order.delete()
+    return redirect("order_management")
 
 
-def select_item(request):
+def select_item(request, order_id=None):
+    
+    if request.method == "POST":
+        table_id = request.POST["table"]
+        table = Table.objects.get(id=table_id)
+        order = Order.objects.get(id=order_id)
+        order.table = table
+        order.save()
+        return redirect("order_management")
+    
+    
     categories = Category.objects.all()
     products = Product.objects.all()
     tables = Table.objects.all()
-    return render(request, 'select_item.html', {'categories': categories, 'products': products, 'tables': tables})
+
+    order = None
+    if order_id:
+        order = Order.objects.get(id=order_id)
+    else:
+        order = Order.objects.create(user=request.user)
+        return redirect("select_item", order_id=order.id)
+
+    order_items = OrderItem.objects.filter(order=order)
+
+    context = {
+        "categories": categories,
+        "products": products,
+        "tables": tables,
+        "order": order,
+        "order_items": order_items,
+    }
+    return render(request, "dashboard/orders/select.html", context)
+
+
+def add_item(request, order_id, product_id):
+    order = Order.objects.get(id=order_id)
+    product = Product.objects.get(id=product_id)
+
+    order_items = OrderItem.objects.filter(order=order)
+    if order_items.filter(product=product).exists():
+        order_item = order_items.get(product=product)
+        order_item.quantity += 1
+        order_item.save()
+    else:
+        OrderItem.objects.create(order=order, product=product, quantity=1)
+
+    return redirect("select_item", order_id=order_id)
+
+
+def remove_item(request, order_id, item_id):
+    item = OrderItem.objects.get(id=item_id)
+    item.delete()
+    return redirect("select_item", order_id=order_id)
+
+
+@require_GET
+def change_item_quantity(request, order_id, item_id):
+    item = OrderItem.objects.get(id=item_id)
+    item.quantity = request.GET.get("quantity", 1)
+    item.save()
+    return redirect("select_item", order_id=order_id)
+
+
+def checkout(request, order_id):
+    return redirect("order_management")

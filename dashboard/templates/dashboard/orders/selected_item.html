@@ -1,0 +1,103 @@
+<li class="flex py-6 sm:py-10">
+    <div class="flex-shrink-0">
+        <img width=""
+             height=""
+             src="{{ order_item.product.image.url }}"
+             alt="Front of men's Basic Tee in sienna."
+             class="h-24 w-24 rounded-md object-cover object-center sm:h-48 sm:w-48">
+    </div>
+    <div class="mt-4 mr-4 flex flex-1 flex-col justify-between sm:mr-6">
+        <div class="relative pl-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pl-0">
+            <div>
+                <div class="flex justify-between">
+                    <h3 class="text-sm">
+                        <a href="#" class="font-medium text-gray-700 hover:text-gray-800">
+                            {{ order_item.product.name }}
+                        </a>
+                    </h3>
+                </div>
+                <p class="mt-1 text-sm font-medium text-gray-900">
+                    {{ order_item.product.price }} تومان
+                </p>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:pr-9">
+                <div class="absolute left-0 top-0">
+                    <a href="{% url 'remove_item' order_item.order.id order_item.id %}"
+                            class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
+                        <svg class="h-5 w-5"
+                             viewBox="0 0 20 20"
+                             fill="currentColor"
+                             aria-hidden="true">
+                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 flex space-x-2 space-x-reverse text-sm text-gray-700">
+            <div class="bg-white border border-gray-200 rounded-lg"
+                 dir="ltr"
+                 x-data="{ quantity: {{ order_item.quantity }} }">
+                <div class="w-full flex justify-between items-center gap-x-1">
+                    <div class="grow py-2 px-3">
+                        <input class="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0"
+                               type="text"
+                               x-model="quantity"
+                               x-effect="sendQuantityToServer(quantity)"
+                               >
+                    </div>
+                    <div class="flex items-center -gap-y-px divide-x divide-gray-200 border-s border-gray-200">
+                        <button type="button"
+                                class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium last:rounded-e-lg bg-white text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                                @click="quantity = Math.max(1, quantity - 1)"
+                                >
+                            <svg class="flex-shrink-0 w-3.5 h-3.5"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                            </svg>
+                        </button>
+                        <button type="button"
+                                class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium last:rounded-e-lg bg-white text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                @click="quantity = quantity + 1"
+                                >
+                            <svg class="flex-shrink-0 w-3.5 h-3.5"
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 width="24"
+                                 height="24"
+                                 viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="2"
+                                 stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </p>
+    </div>
+</li>
+
+
+<script>
+function sendQuantityToServer(quantity) {
+    const data = { quantity: quantity };
+    const queryString = new URLSearchParams(data).toString();
+
+    fetch(`{% url "change_item_quantity" order_id order_item.id %}?${queryString}`, {
+        method: 'GET'
+    });
+}
+</script>

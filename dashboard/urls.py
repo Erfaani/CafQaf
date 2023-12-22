@@ -12,8 +12,13 @@ from .views import (
     delete_table,
     add_change_product,
     delete_product,
-    orders_view, done_order,
+    orders_view,
+    done_order,
+    delete_order,
     select_item,
+    add_item,
+    remove_item,
+    change_item_quantity,
 )
 
 urlpatterns = [
@@ -54,6 +59,23 @@ urlpatterns = [
         name="delete_product",
     ),
     path("orders/", orders_view, name="order_management"),
-    path('orders/done/<int:order_id>/', done_order, name='done_order'),
+    path("orders/done/<int:order_id>/", done_order, name="done_order"),
+    path("orders/delete/<int:order_id>/", delete_order, name="delete_order"),
     path("select_item/", select_item, name="select_item"),
+    path("select_item/<int:order_id>/", select_item, name="select_item"),
+    path(
+        "select_item/<int:order_id>/add_item/<int:product_id>/",
+        add_item,
+        name="add_item",
+    ),
+    path(
+        "select_item/<int:order_id>/remove_item/<int:item_id>/",
+        remove_item,
+        name="remove_item",
+    ),
+    path(
+        "select_item/<int:order_id>/change_item_quantity/<int:item_id>/",
+        change_item_quantity,
+        name="change_item_quantity",
+    ),
 ]
