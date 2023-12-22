@@ -7,3 +7,10 @@ __pycache__/
 .venv
 
 .idea
+
+### Node ###
+node_modules/
+
+
+### Tailwind ###
+static/css/tailwind.css

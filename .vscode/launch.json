@@ -14,6 +14,25 @@
             ],
             "django": true,
             "justMyCode": true
+        },
+        {
+            "name": "node: Tailwind CSS",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "tailwind-watch"
+            ],
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Django + Tailwind",
+            "configurations": [
+                "Python: Django",
+                "node: Tailwind CSS"
+            ]
         }
     ]
 }

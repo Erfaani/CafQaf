@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     "product",
     "order",
     "dashboard",
+    # Third party apps
+    # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -126,6 +128,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    ("node_modules", os.path.join(BASE_DIR, "node_modules/")),
 ]
 
 # Default primary key field type
@@ -134,9 +137,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# Custom settings
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
 AUTH_USER_MODEL = "account.User"
-
-LOGIN_URL= '/login'
+LOGIN_URL = "/login"

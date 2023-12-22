@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="per" dir="rtl" class="h-full">
     <head>
@@ -7,26 +9,14 @@
 
         <title>
             {% block title %}
-                My Personal Portfolio
+                Title
             {% endblock title %}
         </title>
 
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            coffee: '#451a03',
-                            'coffee-light': '#713f12',
-                        }
-                    }
-                }
-            }
-        </script>
+        <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" />
 
         <script defer
-                src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+                src="{% static "node_modules/alpinejs/dist/cdn.min.js" %}"></script>
 
         <link rel="stylesheet"
               href="https://fonts.googleapis.com/css?family=Vazirmatn">
