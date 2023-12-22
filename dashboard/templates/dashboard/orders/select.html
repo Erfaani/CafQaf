@@ -75,7 +75,7 @@
                     <div class="mt-6 flex">
                         <button type="submit"
                                 class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
-                            پرداخت
+                            ثبت سفارش
                         </button>
                     </div>
                 </form>
@@ -115,13 +115,17 @@
                              class="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
                              x-ref="menu-items"
                              role="menu"
-                             aria-orientation="vertical"
-                             aria-labelledby="menu-button"
                              tabindex="-1">
                             <div class="py-1" role="none">
+                                <a href="{% url "select_item" order.id %}"
+                                    class="font-medium text-gray-900 block px-4 py-2 text-sm hover:bg-gray-100"
+                                    :class="{ 'bg-gray-100': {% if not request.GET.category %}true{% else %}false{% endif %} }">
+                                    همه
+                                </a>
                                 {% for category in categories %}
-                                    <a href="#"
-                                       class="font-medium text-gray-900 block px-4 py-2 text-sm hover:bg-gray-100">
+                                    <a href="{% url "select_item" order.id %}?category={{ category.id }}"
+                                       class="font-medium text-gray-900 block px-4 py-2 text-sm hover:bg-gray-100"
+                                       :class="{ 'bg-gray-100': {% if request.GET.category|stringformat:"s" == category.id|stringformat:"s" %}true{% else %}false{% endif %} }">
                                         {{ category.name }}
                                     </a>
                                 {% endfor %}

@@ -234,18 +234,20 @@ def select_item(request, order_id=None):
         return redirect("order_management")
     
     
-    categories = Category.objects.all()
-    products = Product.objects.all()
-    tables = Table.objects.all()
-
     order = None
     if order_id:
         order = Order.objects.get(id=order_id)
     else:
         order = Order.objects.create(user=request.user)
         return redirect("select_item", order_id=order.id)
-
     order_items = OrderItem.objects.filter(order=order)
+
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    if category_id := request.GET.get("category"):
+        products = products.filter(category_id=category_id)
+    tables = Table.objects.all()
+
 
     context = {
         "categories": categories,
