@@ -1,11 +1,9 @@
 <li>
     <a href="{% url url_name %}"
-       class="flex items-center hover:text-coffee hover:bg-gray-100/60 group gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-       :class="{ 'bg-coffee/60 text-white': {% if request.resolver_match.url_name == url_name %} true {% else %} false {% endif %} }"
-       x-state:on="Current"
-       x-state:off="Default">
+       class="text-white/70 flex items-center hover:text-coffee hover:bg-gray-100/60 group gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold {% if request.resolver_match.url_name == url_name %} bg-coffee-light text-white {% endif %}"
+       >
         <i  class="bi {{ item_icon }} text-2xl flex group-hover:text-coffee {% if request.resolver_match.url_name == url_name %} text-white {% endif %}">
         </i>
-        {{ item_name }}
+        <p class="hidden lg:flex">{{ item_name }}</p>
     </a>
 </li>
