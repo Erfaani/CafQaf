@@ -4,7 +4,33 @@
     داشبورد
 {% endblock title %}
 {% block content %}
+
+    <!-- Background -->
+        <div>
+            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+                 aria-hidden="true">
+                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#431407] to-[#fdba74] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                 aria-hidden="true">
+                <div class="relative right-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#451a03] to-[#fdba74] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                 aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#451a03] to-[#fdba74] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+        </div>
+
     <div x-data="{ openSidebar: false }">
+
+        
+
         <div x-show="openSidebar"
              class="relative z-50 lg:hidden"
              x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state."
@@ -60,32 +86,16 @@
                 </div>
             </div>
         </div>
-
-        <!-- Background -->
-        <div>
-            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                 aria-hidden="true">
-                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#431407] to-[#fdba74] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                 aria-hidden="true">
-                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#451a03] to-[#fdba74] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-                     style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-        </div>
         
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex grow flex-col gap-y-5 overflow-y-auto border-l border-gray-200/60 bg-white/60 backdrop-blur px-6 pb-4">
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-coffee/40 backdrop-blur px-6 pb-4">
                 <div class="flex h-16 shrink-0 items-center">
                     <img class="h-8 w-auto"
                          width=""
                          height=""
-                         src="https://tailwindui.com/img/logos/mark.svg?color=amber&amp;shade=900"
+                         src="https://tailwindui.com/img/logos/mark.svg?color=amber&amp;shade=950"
                          alt="Your Company">
                 </div>
                 <nav class="flex flex-1 flex-col">
@@ -98,28 +108,28 @@
 
         <!-- Navbar and main -->
         <div class="lg:pr-72">
-            <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200/60 bg-white/60 backdrop-blur px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+            <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200/60 bg-coffee/40 backdrop-blur px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
                 <button type="button"
-                        class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
+                        class="-m-2.5 p-2.5 text-black lg:hidden"
                         @click="openSidebar = true">
                     <i class="bi bi-list text-2xl flex"></i>
                 </button>
                 <!-- Separator -->
-                <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"></div>
+                <div class="h-6 w-px bg-black lg:hidden" aria-hidden="true"></div>
                 <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
                     <form class="relative flex flex-1" action="#" method="get">
                         <div class="flex items-center pointer-events-none absolute inset-y-0 left-0">
-                            <i class="flex bi bi-search text-gray-400 hover:text-gray-500"></i>
+                            <i class="flex bi bi-search text-black"></i>
                         </div>
                         <input id="search-field"
-                               class="bg-transparent block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+                               class="bg-transparent block h-full w-full border-0 py-0 pl-8 pr-0 black placeholder:text-black focus:ring-0 sm:text-sm"
                                placeholder="جستجو..."
                                type="search"
                                name="search">
                     </form>
                     <div class="flex items-center gap-x-4 lg:gap-x-6">
                         <!-- Separator -->
-                        <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
+                        <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-black"
                              aria-hidden="true"></div>
                         <!-- Profile dropdown -->
                         <div x-data="{ openDropdown: false }" class="relative">
@@ -129,7 +139,7 @@
                                     x-ref="button"
                                     @click="openDropdown = !openDropdown">
                                 <span class="hidden lg:flex lg:items-center">
-                                    <span class="text-sm font-semibold leading-6 text-gray-900"
+                                    <span class="text-sm font-semibold leading-6 black"
                                           aria-hidden="true">{{ user.get_full_name }}</span>
                                 </span>
                                 <img class="mr-4 h-8 w-8 rounded-full bg-gray-50"
