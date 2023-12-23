@@ -10,7 +10,7 @@ from order.models import Order, OrderItem
 @login_required
 @user_passes_test(lambda u: u.is_manager or u.is_employee)
 def dashboard_view(request):
-    return render(request, "index.html")
+    return render(request, "dashboard/index/index.html")
 
 
 @login_required

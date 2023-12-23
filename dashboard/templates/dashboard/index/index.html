@@ -1,0 +1,66 @@
+{% extends "dashboard.html" %}
+{% block dashboard_content %}
+    <div>
+        <div class="relative isolate overflow-hidden">
+            <!-- Secondary navigation -->
+            <header class="pb-4 pt-6 sm:pb-6">
+                <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
+                    <h1 class="text-base font-semibold leading-7 text-gray-900">درآمد</h1>
+                    <div class="order-last flex w-full gap-x-8 text-sm font-semibold leading-6 sm:order-none sm:w-auto sm:border-l sm:border-gray-200 sm:pl-6 sm:leading-7">
+                        <a href="#" class="text-coffee">هفته گذشته</a>
+                        <a href="#" class="text-gray-700">ماه گذشته</a>
+                        <a href="#" class="text-gray-700">سال گذشته</a>
+                    </div>
+                    <a href="#"
+                       class="ml-auto flex items-center gap-x-1 rounded-md bg-coffee px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-coffee-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-coffee">
+                       فاکتور جدید
+                       <i class="bi bi-plus flex text-xl"></i>
+                    </a>
+                </div>
+            </header>
+            <!-- Stats -->
+            <div class="border-b border-b-gray-900/10 lg:border-t lg:border-t-gray-900/5">
+                <dl class="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-2 xl:px-0">
+                    <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 ">
+                        <dt class="text-sm font-medium leading-6 text-gray-500">درآمد</dt>
+                        <dd class="text-xs font-medium text-gray-700" dir="ltr">
+                            +4.75%
+                        </dd>
+                        <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">
+                            405,091 تومان
+                        </dd>
+                    </div>
+                    <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
+                        <dt class="text-sm font-medium leading-6 text-gray-500">فاکتورهای معوق</dt>
+                        <dd class="text-xs font-medium text-rose-600" dir="ltr">
+                            +54.02%
+                        </dd>
+                        <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">
+                            12,787 تومان
+                        </dd>
+                    </div>
+                    <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 lg:border-l">
+                        <dt class="text-sm font-medium leading-6 text-gray-500">فاکتورهای معوقه</dt>
+                        <dd class="text-xs font-medium text-gray-700" dir="ltr">
+                            -1.39%
+                        </dd>
+                        <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">
+                            245,988 تومان
+                        </dd>
+                    </div>
+                    <div class="flex items-baseline flex-wrap justify-between gap-y-2 gap-x-4 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8 sm:border-l">
+                        <dt class="text-sm font-medium leading-6 text-gray-500">مخارج</dt>
+                        <dd class="text-xs font-medium text-rose-600" dir="ltr">
+                            +10.18%
+                        </dd>
+                        <dd class="w-full flex-none text-3xl font-medium leading-10 tracking-tight text-gray-900">
+                            30,156 تومان
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+ 
+        </div>
+        {% include "dashboard/index/trending.html" %}
+    </div>
+{% endblock dashboard_content %}

@@ -1,0 +1,40 @@
+<div class="space-y-16 py-16 xl:space-y-20">
+    <!-- Trendind -->
+    <div>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <h2 class="mx-auto max-w-2xl text-base font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">
+                پر فروش ترین محصولات
+            </h2>
+        </div>
+        <div class="mt-6 overflow-hidden border-t border-gray-100">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+                    <table class="w-full text-right">
+                        <tbody>
+                            <tr class="text-sm leading-6 text-gray-900">
+                                <th scope="colgroup"
+                                    colspan="3"
+                                    class="relative isolate py-2 font-semibold">
+                                    <time datetime="2023-03-22">امروز</time>
+                                    <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200"></div>
+                                    <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200"></div>
+                                </th>
+                            </tr>
+                            {% include "dashboard/index/trending_item.html" %}
+                            <tr class="text-sm leading-6 text-gray-900">
+                                <th scope="colgroup"
+                                    colspan="3"
+                                    class="relative isolate py-2 font-semibold">
+                                    <time datetime="2023-03-21">این هفته</time>
+                                    <div class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200"></div>
+                                    <div class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200"></div>
+                                </th>
+                            </tr>
+                            {% include "dashboard/index/trending_item.html" %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
