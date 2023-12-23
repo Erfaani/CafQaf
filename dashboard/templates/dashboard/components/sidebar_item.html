@@ -1,18 +1,11 @@
 <li>
     <a href="{% url url_name %}"
-       class="hover:text-coffee hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+       class="flex items-center hover:text-coffee hover:bg-gray-100 group gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
        :class="{ 'bg-gray-100 text-coffee': {% if request.resolver_match.url_name == url_name %} true {% else %} false {% endif %} }"
        x-state:on="Current"
-       x-state:off="Default"
-       x-state-description="Current: &quot;bg-gray-50 text-coffee&quot;, Default: &quot;text-gray-700 hover:text-coffee hover:bg-gray-100&quot;">
-        <svg class="h-6 w-6 shrink-0 group-hover:text-coffee {% if request.resolver_match.url_name == url_name %} text-coffee {% endif %}"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke-width="1.5"
-             stroke="currentColor"
-             aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="{{ item_icon }}"></path>
-        </svg>
+       x-state:off="Default">
+        <i  class="bi {{ item_icon }} text-2xl flex group-hover:text-coffee {% if request.resolver_match.url_name == url_name %} text-coffee {% endif %}">
+        </i>
         {{ item_name }}
     </a>
 </li>

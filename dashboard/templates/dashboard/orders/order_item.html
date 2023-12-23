@@ -21,19 +21,14 @@
                         انجام
                     </a>
                     <div x-data="{ open: false }"
-                         class="relative -mr-px block">
+                         class="relative -mr-px flex"
+                         @click.away="open = false">
                         <button type="button"
-                                class="relative inline-flex items-center rounded-l-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+                                class="relative items-center rounded-l-md bg-white px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
                                 id="option-menu-button"
                                 x-ref="button"
                                 @click="open = !open">
-                            <svg class="h-5 w-5"
-                                 viewBox="0 0 20 20"
-                                 fill="currentColor"
-                                 aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd">
-                                </path>
-                            </svg>
+                            <i class="bi bi-chevron-down flex"></i>
                         </button>
                         <div x-show="open"
                              x-transition:enter="transition ease-out duration-100"
@@ -48,8 +43,6 @@
                              tabindex="-1">
                             <div class="py-1" role="none">
                                 <a href="{% url 'select_item' order.id %}"
-                                   x-state:on="Active"
-                                   x-state:off="Not Active"
                                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900"
                                    >تغییر</a>
                                 <a href="{% url 'delete_order' order.id %}"

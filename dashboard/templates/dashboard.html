@@ -37,16 +37,10 @@
                              x-transition:leave-start="opacity-100"
                              x-transition:leave-end="opacity-0"
                              class="absolute right-full top-0 flex w-16 justify-center pt-5">
-                            <button type="button" class="-m-2.5 p-2.5" @click="openSidebar = false">
-                                <span class="sr-only">Close sidebar</span>
-                                <svg class="h-6 w-6 text-white"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke-width="1.5"
-                                     stroke="currentColor"
-                                     aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
+                            <button type="button"
+                                    class="text-white hover:text-gray-300"
+                                    @click="openSidebar = false">
+                                <i class="bi bi-x-lg "></i>
                             </button>
                         </div>
                         <!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -90,28 +84,15 @@
                     <button type="button"
                             class="-m-2.5 p-2.5 text-gray-700 lg:hidden"
                             @click="openSidebar = true">
-                        <span class="sr-only">Open sidebar</span>
-                        <svg class="h-6 w-6"
-                             fill="none"
-                             viewBox="0 0 24 24"
-                             stroke-width="1.5"
-                             stroke="currentColor"
-                             aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-                        </svg>
+                        <i class="bi bi-list text-2xl flex"></i>
                     </button>
                     <!-- Separator -->
                     <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"></div>
                     <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
                         <form class="relative flex flex-1" action="#" method="get">
-                            <label for="search-field" class="sr-only">جستجو</label>
-                            <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                                 viewBox="0 0 20 20"
-                                 fill="currentColor"
-                                 aria-hidden="true">
-                                <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd">
-                                </path>
-                            </svg>
+                            <div class="flex items-center pointer-events-none absolute inset-y-0 left-0">
+                                <i class="flex bi bi-search text-gray-400 hover:text-gray-500"></i>
+                            </div>
                             <input id="search-field"
                                    class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                                    placeholder="جستجو..."
@@ -119,18 +100,6 @@
                                    name="search">
                         </form>
                         <div class="flex items-center gap-x-4 lg:gap-x-6">
-                            <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
-                                <span class="sr-only">View notifications</span>
-                                <svg class="h-6 w-6"
-                                     fill="none"
-                                     viewBox="0 0 24 24"
-                                     stroke-width="1.5"
-                                     stroke="currentColor"
-                                     aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0">
-                                    </path>
-                                </svg>
-                            </button>
                             <!-- Separator -->
                             <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
                                  aria-hidden="true"></div>
@@ -141,22 +110,15 @@
                                         id="user-menu-button"
                                         x-ref="button"
                                         @click="openDropdown = !openDropdown">
-                                    <img class="h-8 w-8 rounded-full bg-gray-50"
+                                    <span class="hidden lg:flex lg:items-center">
+                                        <span class="text-sm font-semibold leading-6 text-gray-900"
+                                              aria-hidden="true">{{ user.get_full_name }}</span>
+                                    </span>
+                                    <img class="mr-4 h-8 w-8 rounded-full bg-gray-50"
                                          width=""
                                          height=""
                                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
                                          alt="">
-                                    <span class="hidden lg:flex lg:items-center">
-                                        <span class="mr-4 text-sm font-semibold leading-6 text-gray-900"
-                                              aria-hidden="true">{{ user.get_full_name }}</span>
-                                        <svg class="mr-2 h-5 w-5 text-black"
-                                             viewBox="0 0 20 20"
-                                             fill="currentColor"
-                                             aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd">
-                                            </path>
-                                        </svg>
-                                    </span>
                                 </button>
                                 <div x-show="openDropdown"
                                      x-transition:enter="transition ease-out duration-100"

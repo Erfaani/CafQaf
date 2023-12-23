@@ -11,6 +11,7 @@
     "tailwind-build": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --minify"
   },
   "dependencies": {
-    "alpinejs": "^3.13.3"
+    "alpinejs": "^3.13.3",
+    "bootstrap-icons": "^1.11.2"
   }
 }

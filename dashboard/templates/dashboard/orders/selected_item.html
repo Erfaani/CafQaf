@@ -24,13 +24,7 @@
                 <div class="absolute left-0 top-0">
                     <a href="{% url 'remove_item' order_item.order.id order_item.id %}"
                             class="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500">
-                        <svg class="h-5 w-5"
-                             viewBox="0 0 20 20"
-                             fill="currentColor"
-                             aria-hidden="true">
-                            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z">
-                            </path>
-                        </svg>
+                        <i class="bi bi-x-lg flex"></i>
                     </a>
                 </div>
             </div>
@@ -52,36 +46,13 @@
                                 class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium last:rounded-e-lg bg-white text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                                 @click="quantity = Math.max(1, quantity - 1)"
                                 >
-                            <svg class="flex-shrink-0 w-3.5 h-3.5"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                            </svg>
+                            <i class="bi bi-dash flex"></i>
                         </button>
                         <button type="button"
-                                class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium last:rounded-e-lg bg-white text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                class="w-10 h-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium last:rounded-e-lg bg-white text-gray-800 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                                 @click="quantity = quantity + 1"
                                 >
-                            <svg class="flex-shrink-0 w-3.5 h-3.5"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor"
-                                 stroke-width="2"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round">
-                                <path d="M5 12h14" />
-                                <path d="M12 5v14" />
-                            </svg>
+                            <i class="bi bi-plus flex"></i>
                         </button>
                     </div>
                 </div>
