@@ -32,7 +32,11 @@
                             </div>
                             <div class="col-span-full">
                                 <label for="image" class="block text-sm font-medium leading-6 text-gray-900">عکس دسته بندی</label>
-                                {% include "dashboard/components/image_input.html" with image_url=category.icon.url %}
+                                {% if category.icon %}
+                                    {% include "dashboard/components/image_input.html" with image_url=category.icon.url %}
+                                {% else %}
+                                    {% include "dashboard/components/image_input.html" %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
