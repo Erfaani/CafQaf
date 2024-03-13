@@ -167,10 +167,11 @@ def add_change_product(request, product_id=None):
     product = None
     if product_id:
         product = Product.objects.get(id=product_id)
-
+        
     if request.method == "POST":
         name = request.POST["name"]
         price = request.POST["price"]
+        description = request.POST["description"]
         category = Category.objects.get(id=request.POST["category"])
         image = None
         if request.FILES:
@@ -179,12 +180,13 @@ def add_change_product(request, product_id=None):
             product.name = name
             product.price = price
             product.category = category
+            product.description = description
             if image:
                 product.image = image
             product.save()
         else:
             Product.objects.create(
-                name=name, price=price, category=category, image=image
+                name=name, price=price, category=category, description=description, image=image
             )
         return redirect("product_management")
     categories = Category.objects.all()
@@ -259,9 +261,15 @@ def select_item(request, order_id=None):
     return render(request, "dashboard/orders/select.html", context)
 
 
-def add_item(request, order_id, product_id):
-    order = Order.objects.get(id=order_id)
+def add_item(request, product_id, order_id=None):
     product = Product.objects.get(id=product_id)
+    
+    order = None
+    if order_id:
+        order = Order.objects.get(id=order_id)
+    else:
+        order = Order.objects.create(user=request.user)
+        order_id = order.id
 
     order_items = OrderItem.objects.filter(order=order)
     if order_items.filter(product=product).exists():

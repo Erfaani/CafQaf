@@ -22,7 +22,6 @@ class Product(models.Model):
     price = models.PositiveIntegerField()
     image = models.ImageField(upload_to="product_images/", blank=True, null=True)
     available = models.BooleanField(default=True)
-    amount = models.IntegerField(verbose_name="تعداد")
 
     def __str__(self):
         return str(self.name)

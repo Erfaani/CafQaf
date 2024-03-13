@@ -26,25 +26,27 @@
         </div>
     </div>
     <!-- Static sidebar for desktop -->
-    <div class="w-22 fixed inset-y-0 z-50 flex lg:w-72 flex-col">
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-coffee px-6 pb-4">
-            <div class="flex h-16 shrink-0 items-center">
-                <a href="{% url "home"  %}">
-                    <img class="h-8 w-auto"
-                     width=""
-                     height=""
-                     src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                     alt="Your Company">
-                </a>
+    {% if user.is_manager or user.is_admin %}
+        <div class="w-22 fixed inset-y-0 z-50 flex lg:w-72 flex-col">
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-coffee px-6 pb-4">
+                <div class="flex h-16 shrink-0 items-center">
+                    <a href="{% url "home" %}">
+                        <img class="h-8 w-auto"
+                        width=""
+                        height=""
+                        src="https://tailwindui.com/img/logos/mark.svg?color=white"
+                        alt="Your Company">
+                    </a>
+                </div>
+                <nav class="flex flex-1 flex-col">
+                    <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                        {% include "dashboard/components/sidebar_items.html" %}
+                    </ul>
+                </nav>
             </div>
-            <nav class="flex flex-1 flex-col">
-                <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                    {% include "dashboard/components/sidebar_items.html" %}
-                </ul>
-            </nav>
         </div>
-    </div>
+    {% endif %}
     <!-- main -->
     <div class=" pt-12 pr-24 lg:pr-72">
         <main class="py-10">

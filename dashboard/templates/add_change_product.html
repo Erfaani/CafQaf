@@ -1,6 +1,6 @@
 {% extends "dashboard.html" %}
 {% block title %}
-    {% if category %}
+    {% if product %}
         تغییر محصول
     {% else %}
         ساخت محصول
@@ -11,7 +11,7 @@
         <div class="mx-auto max-w-2xl">
             <form method="post"
                   enctype="multipart/form-data"
-                  {% if category %} action="{% url 'change_product' product.id %}" {% else %} action="{% url 'add_product' %}" {% endif %}>
+                  {% if product %} action="{% url 'change_product' product.id %}" {% else %} action="{% url 'add_product' %}" {% endif %}>
                 {% csrf_token %}
                 <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
@@ -71,13 +71,17 @@
                                                   id="description"
                                                   rows="3"
                                                   class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                                                  required>{% if product %}{{ product.description }}{% endif %}</textarea>
+                                                  required>{% if product %}{{ product.description }}{% endif %} </textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-span-full">
                                 <label for="image" class="block text-sm font-medium leading-6 text-gray-900">عکس محصول</label>
-                                {% include "dashboard/components/image_input.html" with image_url=product.image.url %}
+                                {% if product.image %}
+                                    {% include "dashboard/components/image_input.html" with image_url=product.image.url %}
+                                {% else %}
+                                    {% include "dashboard/components/image_input.html" %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>

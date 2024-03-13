@@ -69,6 +69,11 @@ urlpatterns = [
         name="add_item",
     ),
     path(
+        "select_item/add_item/<int:product_id>/",
+        add_item,
+        name="add_item",
+    ),
+    path(
         "select_item/<int:order_id>/remove_item/<int:item_id>/",
         remove_item,
         name="remove_item",

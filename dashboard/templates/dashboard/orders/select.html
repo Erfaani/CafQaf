@@ -133,9 +133,14 @@
         <section aria-labelledby="products-heading"
                  class="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
             <h2 id="products-heading" class="sr-only">محصولات</h2>
-            {% for product in products %}
-                {% include "dashboard/orders/product.html" with product=product order_id=order.id %}
-            {% endfor %}
+
+            <div class="-mx-px grid grid-cols-2 border-r border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+                {% for product in products %}
+                    {% url "add_item" order.id product.id as the_url %}
+                    {% include "dashboard/orders/product.html" with product=product link=the_url %}
+                {% endfor %}
+            </div>
+            
         </section>
     </div>
 {% endblock dashboard_content %}

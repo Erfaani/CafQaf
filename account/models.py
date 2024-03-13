@@ -18,7 +18,7 @@ class User(AbstractUser):
     
     @property
     def is_manager(self):
-        return self.type == 'manager'
+        return self.type == 'manager' or self.is_superuser
     
     @property
     def is_employee(self):
