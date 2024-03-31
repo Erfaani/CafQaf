@@ -15,7 +15,6 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # messages.success(request, "Login successful.")
             return redirect("home") 
         else:
             return render(request, "login.html", {"error": "نام کاربری یا رمز عبور اشتباه است"})
@@ -42,4 +41,3 @@ def signup_view(request):
         else:
             return render(request, "signup.html", {"error": "رمز عبور و تکرار آن یکسان نیستند"})
     return render(request, "signup.html")
-

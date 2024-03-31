@@ -225,6 +225,7 @@ def delete_order(request, order_id):
     return redirect("order_management")
 
 
+@login_required(login_url="login")
 def select_item(request, order_id=None):
     
     if request.method == "POST":
