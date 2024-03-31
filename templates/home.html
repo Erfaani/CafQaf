@@ -35,10 +35,10 @@
                                         <!-- Flyout menus -->
                                         <div class="inset-x-0 bottom-0 px-4">
                                             <div class="flex h-full space-x-8 space-x-reverse">
-                                                <a href="#category-heading" class="flex items-center text-sm font-medium text-white">لیست محصولات</a>
-                                                <a href="#" class="flex items-center text-sm font-medium text-white">رزرو میز</a>
-                                                <a href="#" class="flex items-center text-sm font-medium text-white">ارتباط با ما</a>
-                                                <a href="#" class="flex items-center text-sm font-medium text-white">درباره ما</a>
+                                                <a href="#category-heading" class="flex items-center text-sm font-medium text-white hover:text-gray-300">لیست محصولات</a>
+                                                <a href="#" class="flex items-center text-sm font-medium text-white hover:text-gray-300">رزرو میز</a>
+                                                <a href="#" class="flex items-center text-sm font-medium text-white hover:text-gray-300">ارتباط با ما</a>
+                                                <a href="#" class="flex items-center text-sm font-medium text-white hover:text-gray-300">درباره ما</a>
                                             </div>
                                         </div>
                                     </div>
@@ -81,11 +81,11 @@
                                             {% if user.is_authenticated %}
                                                 {% if user.is_manager or user.is_employee %}
                                                     <a href="{% url 'dashboard' %}"
-                                                       class="me-8 text-sm font-medium text-white">داشبورد</a>
+                                                       class="me-8 text-sm font-medium text-white hover:text-gray-300">داشبورد</a>
                                                 {% endif %}
-                                                <a href="{% url 'logout' %}" class="me-2 text-sm font-medium text-white">خارج شدن</a>
+                                                <a href="{% url 'logout' %}" class="me-2 text-sm font-medium text-white hover:text-gray-300">خارج شدن</a>
                                             {% else %}
-                                                <a href="{% url 'login' %}" class="me-2 text-sm font-medium text-white">وارد شدن</a>
+                                                <a href="{% url 'login' %}" class="me-2 text-sm font-medium text-white hover:text-gray-300">وارد شدن</a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                 <h1 class="text-3xl font-bold tracking-tight text-white lg:text-6xl">با کاف قاف الان زندگی کنید بعدا بخوابید</h1>
                 <p class="mt-4 text-xl text-white">برای ثبت سفارش جدید روی لینک زیر کلیک کنید</p>
                 <a href="{% url 'select_item' %}"
-                   class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-100">
+                   class="mt-8 inline-block rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-gray-900 hover:bg-gray-300">
                     ثبت سفارش جدید
                 </a>
             </div>
