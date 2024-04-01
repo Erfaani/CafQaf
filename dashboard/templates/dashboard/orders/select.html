@@ -1,4 +1,5 @@
 {% extends "dashboard.html" %}
+{% load jalali_tags %}
 {% load static %}
 {% block title %}
     انتخاب آیتم
@@ -72,6 +73,29 @@
                             {% for table in tables %}<option value="{{ table.id }}">{{ table.name }}</option>{% endfor %}
                         </select>
                     </div>
+                    
+                    <div class="mt-6">
+                        <label for="table" class="block text-sm font-medium text-gray-700">رزرو برای تاریخ</label>
+                        <input
+                            data-jdp
+                            name="date"
+                                class="mt-2 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-coffee-light focus:border-coffee-light sm:text-sm rounded-md"
+                            {% if order.reserved_for %}
+                                value="{{ order.reserved_for|to_jalali:"%Y/%m/%d %H:%M" }}"
+                            {% else %}
+                                placeholder="تاریخ و زمان مورد نظر خود را وارد کنید"
+                                required
+                            {% endif %}
+                             />
+                    </div>
+                    <script type="text/javascript">
+                        jalaliDatepicker.startWatch({
+                            time: true,
+                            hasSecond: false,
+                            minDate: "today",
+                        });
+                    </script>
+
                     <div class="mt-6 flex">
                         <button type="submit"
                                 class="w-full rounded-md border border-transparent bg-coffee px-4 py-3 text-center text-base font-medium text-white shadow-sm hover:bg-coffee-light focus:outline-none focus:ring-2 focus:ring-coffee-light focus:ring-offset-2 focus:ring-offset-gray-50">

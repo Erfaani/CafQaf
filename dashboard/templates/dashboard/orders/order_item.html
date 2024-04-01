@@ -1,3 +1,4 @@
+{% load jalali_tags %}
 <tr>
     <td class="whitespace-nowrap border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">
         {{ order.user.get_full_name }}
@@ -6,7 +7,10 @@
         {{ order.table.name }}
     </td>
     <td dir="ltr" class="text-right whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-        {{ order.created_at }}
+        {{ order.created_at|to_jalali:'تاریخ: %Y/%m/%d - زمان: %H:%M' }}
+    </td>
+    <td dir="ltr" class="text-right whitespace-nowrap border-b border-gray-200 hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
+        {{ order.reserved_for|to_jalali:'تاریخ: %Y/%m/%d - زمان: %H:%M' }}
     </td>
     <td class="whitespace-nowrap border-b border-gray-200 px-3 py-4 text-sm text-gray-500">
         {{ order.total_price }}

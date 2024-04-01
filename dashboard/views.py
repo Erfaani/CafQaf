@@ -1,3 +1,6 @@
+import datetime
+from zoneinfo import ZoneInfo
+
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET
@@ -5,6 +8,8 @@ from django.views.decorators.http import require_GET
 from account.models import User
 from product.models import Category, Product, Table
 from order.models import Order, OrderItem
+
+from utils import jalali
 
 
 @login_required
@@ -227,16 +232,25 @@ def delete_order(request, order_id):
 
 @login_required(login_url="login")
 def select_item(request, order_id=None):
-    
+
     if request.method == "POST":
         table_id = request.POST["table"]
+        date, time = request.POST["date"].split(" ")
         table = Table.objects.get(id=table_id)
         order = Order.objects.get(id=order_id)
         order.table = table
+        # https://github.com/mjnaderi/Jalali.py
+        order.reserved_for = (
+            datetime.datetime.strptime(
+                jalali.Persian(date).gregorian_string(), "%Y-%m-%d"
+            )
+            + datetime.timedelta(
+                hours=int(time.split(":")[0]), minutes=int(time.split(":")[1])
+            )
+        ).replace(tzinfo=ZoneInfo("Asia/Tehran"))
         order.save()
         return redirect("order_management")
-    
-    
+
     order = None
     if order_id:
         order = Order.objects.get(id=order_id)
@@ -251,13 +265,12 @@ def select_item(request, order_id=None):
         products = products.filter(category_id=category_id)
     tables = Table.objects.all()
 
-
     context = {
         "categories": categories,
         "products": products,
         "tables": tables,
         "order": order,
-        "order_items": order_items,
+        "order_items": order_items
     }
     return render(request, "dashboard/orders/select.html", context)
 
