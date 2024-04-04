@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "dashboard",
     # Third party apps
     "jalali_date",
+    "django_extensions",
     # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
