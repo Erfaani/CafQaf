@@ -58,7 +58,7 @@ To set up and run the project locally, follow these steps:
 ## Target Audience
 
 This project is tailored for:
-- **Cafe Owners and Managers** looking to streamline operations and enhance customer experience.
+- **Cafe Owners and Managers** are looking to streamline operations and enhance the customer experience.
 - **Developers** who want to contribute to or customize a cafe management system.
 
 ## Contribution
@@ -80,7 +80,7 @@ Contributions are welcome! To contribute:
 
 For any inquiries or support, feel free to reach out:
 - **Email:** erfanjouybar@gmail.com
-- **GitHub:** [yourusername](https://github.com/erfaani)
+- **Linkedin:** [linkedin](https://www.linkedin.com/in/erfanjouybar)
 
 ---
 
